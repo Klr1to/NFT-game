@@ -50,7 +50,12 @@ public class Hero : MonoBehaviour
 	}
 	private void Gunflip(bool status)
 	{
-		if (status == true) { GameObject.Find("pistol").GetComponent<GunScript>().speed = -10; }
+		if (status == true) 
+			GameObject.Find("pistol").GetComponent<GunScript>().speed = -10;
+			SpriteRenderer sprited = GameObject.Find("pistol").GetComponentInChildren<SpriteRenderer>();
+			sprited.flipX = !sprited.flipX;
+
+
 		if (status == false) { GameObject.Find("pistol").GetComponent<GunScript>().speed = 10; }
 	}
 
