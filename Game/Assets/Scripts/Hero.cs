@@ -7,7 +7,7 @@ public class Hero : MonoBehaviour
 	[SerializeField] private float speed = 3f;
 	[SerializeField] private int hp = 1;
 	[SerializeField] private float jumpForce = 3f;
-
+	public bool isflipped = false;
 	private Rigidbody2D rigidbody;
 	private SpriteRenderer sprite;
 	private bool Grounded = false;
@@ -45,6 +45,13 @@ public class Hero : MonoBehaviour
 		transform.position = Vector3.MoveTowards(transform.position, transform.position + runDirectory, speed * Time.deltaTime);
 
 		sprite.flipX = runDirectory.x < 0;
+		if (runDirectory.x<0) { Gunflip(true); };
+		if (runDirectory.x > 0) { Gunflip(false); }
+	}
+	private void Gunflip(bool status)
+	{
+		if (status == true) { GameObject.Find("pistol").GetComponent<GunScript>().speed = -10; }
+		if (status == false) { GameObject.Find("pistol").GetComponent<GunScript>().speed = 10; }
 	}
 
 	private void Jump()
