@@ -14,14 +14,12 @@ public class BulletScript : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D coll)
 	{
-		Debug.Log(colliderofplayer);
-		Debug.Log(coll.ToString());
-		if (!coll.isTrigger && coll.ToString() != "Hero (UnityEngine.BoxCollider2D)") // чтобы пуля не реагировала на триггер
+		if (!coll.isTrigger && !coll.gameObject.CompareTag("Player")) // чтобы пуля не реагировала на триггер
 		{
 			switch (coll.tag)
 			{
-				case "Enemy_1":
-					// что-то...
+				case "Enemy":
+					coll.gameObject.GetComponent<Enemy>().OnShooted();
 					break;
 				case "Enemy_2":
 					// что-то еще...

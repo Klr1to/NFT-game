@@ -2,27 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class NewBehaviourScript : MonoBehaviour
+using UnityEngine.UI;
+public class DoorLevelLoadTrigger : MonoBehaviour
 {
-	// Start is called before the first frame update
-	void Start()
+	[SerializeField] public int levelID = 1;
+
+	void NextLevel(int _sceneNumber)
 	{
-
+		SceneManager.LoadScene(_sceneNumber);
+		Destroy(gameObject);
+		Debug.Log("Чтото произошло");
 	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
-	}
-
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.CompareTag("Player"))
 		{
-			
-			Destroy(gameObject);
+
+			NextLevel(levelID);
 		}
 
 	}

@@ -1,0 +1,4 @@
+repository "Game@EblanGames@cloud"
+  path "/"
+    br "/main"
+    co "/main"
